@@ -16,7 +16,6 @@ public class Menu {
     private static final int CACHE_FILE_NAME_SAVE = 2;
     private static final int CACHE_FILE_NAME_LOAD = 3;
 
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         DirFileCache fileCache = null;
