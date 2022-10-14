@@ -1,10 +1,8 @@
-package ru.job4j.cache.menu;
-
-import ru.job4j.cache.DirFileCache;
+package ru.job4j.cache;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Emulator {
     private static final String MENUTEXT = """
             Введите 1, для указания директории для кэширования,
             Введите 2, для загрузки файла в кэш,
