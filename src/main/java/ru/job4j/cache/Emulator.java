@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Emulator {
     private static final String MENUTEXT = """
-            Р’РІРµРґРёС‚Рµ 1, РґР»СЏ СѓРєР°Р·Р°РЅРёСЏ РґРёСЂРµРєС‚РѕСЂРёРё РґР»СЏ РєСЌС€РёСЂРѕРІР°РЅРёСЏ,
-            Р’РІРµРґРёС‚Рµ 2, РґР»СЏ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»Р° РІ РєСЌС€,
-            Р’РІРµРґРёС‚Рµ 3, РґР»СЏ РёР·РІР»РµС‡РµРЅРёСЏ С„Р°Р№Р»Р° РёР· РєСЌС€Р°,
-            Р’РІРµРґРёС‚Рµ Р»СЋР±РѕРµ С‡РёСЃР»Рѕ, РѕС‚Р»РёС‡РЅРѕРµ РѕС‚ РІР°СЂРёР°РЅС‚РѕРІ РІС‹С€Рµ, РґР»СЏ РІС‹С…РѕРґР°
+            Введите 1, для указания директории для кэширования,
+            Введите 2, для загрузки файла в кэш,
+            Введите 3, для извлечения файла из кэша,
+            Введите любое число, отличное от вариантов выше, для выхода
             """;
 
     private static final int CACHE_DIRERCTORY = 1;
@@ -22,22 +22,23 @@ public class Emulator {
 
         while (run) {
             System.out.println(MENUTEXT);
-            System.out.println("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ");
+            System.out.println("Выберите действие: ");
             int userChice = Integer.parseInt(scanner.nextLine());
             if (userChice == CACHE_DIRERCTORY) {
-                System.out.println("Р’С‹Р±РµСЂРёС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ: ");
+                System.out.println("Выберите директорию для сохранения: ");
                 String dir = scanner.nextLine();
                 fileCache = new DirFileCache(dir);
             } else if (userChice == CACHE_FILE_NAME_SAVE) {
-                System.out.println("Р’С‹Р±РµСЂРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ РєСЌС€: ");
+                System.out.println("Выберите имя файла для сохранения в кэш: ");
                 fileName = scanner.nextLine();
-                fileCache.put(fileName, fileName);
+                assert fileCache != null;
+                fileCache.put(fileName, null);
             } else if (userChice == CACHE_FILE_NAME_LOAD) {
-                System.out.println("Р’С‹Р±РµСЂРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ РёР·РІР»РµС‡РµРЅРёСЏ РёР· РєСЌС€Р°: ");
+                System.out.println("Выберите имя файла для извлечения из кэша: ");
                 String key = scanner.nextLine();
                 System.out.println(fileCache.get(key));
             } else {
-                System.out.println("РІС‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹...");
+                System.out.println("выход из программы...");
                 run = false;
             }
         }
